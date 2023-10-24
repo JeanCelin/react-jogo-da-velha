@@ -24,6 +24,8 @@ function Game () {
   const [winner, setWinner] = useState(0)
   const [winnerLine, setWinnerLine] = useState([])
   const [draw, setDraw] = useState(false)
+  const [scoreX, setScoreX] = useState(0)
+  const [scoreCircle, setScoreCircle] = useState(0)
 
   const handleClick = (pos) => {
     if (gameState[pos] === 0 && winner === 0) {
@@ -41,6 +43,8 @@ function Game () {
       if (sum === 3 || sum === -3) {
         setWinner(sum / 3)
         setWinnerLine(Line)
+        sum > 0 ?
+         setScoreCircle(scoreCircle + 1) : setScoreX(scoreX + 1)
       }
     })
     
@@ -98,7 +102,10 @@ function Game () {
         isDraw={draw}
       />
     </div>
-    <Score />
+    <Score
+      scoreX = {scoreX}
+      scoreCircle = {scoreCircle}
+    />
     </>
   
   ) 
